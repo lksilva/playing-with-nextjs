@@ -1,3 +1,4 @@
+import React, { Component } from 'react'
 import Header from './Header'
 
 const layoutStyle = {
@@ -6,11 +7,13 @@ const layoutStyle = {
   border: '1px solid #DDD'
 }
 
-const Layout = (props) => (
-  <div style={layoutStyle}>
-    <Header />
-    {props.children}
-  </div>
-)
-
-export default Layout
+export default class MainLayout extends Component {
+  render() {
+    return (
+      <div style={layoutStyle}>
+        <Header />
+        {this.props.children}
+      </div>
+    )
+  }
+}
