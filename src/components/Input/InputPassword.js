@@ -5,7 +5,9 @@ import { HasCapitalLetter, HasNumber } from '../../utils/helpers'
 
 export default class Input extends Component {
   static propTypes = {
-    label: PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    handleInput: PropTypes.func.isRequired
   }
 
   state = {
@@ -62,7 +64,8 @@ export default class Input extends Component {
   )
 
   handleInput = (input) => {
-    this.setState({ password: input.target.value }, this.showFeedback)
+    this.setState({ password: input.target.value }, this.showFeedback);
+    this.props.handleInput(input)
   }
 
   showFeedback = () => {
@@ -76,11 +79,11 @@ export default class Input extends Component {
   }
 
   render() {
-    const { label } = this.props;
+    const { label, name } = this.props;
     return (
       <div className="boxInput">
         <label>{label}</label>
-        <input type="password" value={this.state.password} onChange={this.handleInput} ></input>
+        <input type="password" value={this.state.password} onChange={this.handleInput} name={name} ></input>
         {this.renderStrength()}
         {this.state.password.length ? this.renderRules() : this.renderDefaultRules()}
         <style jsx>{styles}</style>

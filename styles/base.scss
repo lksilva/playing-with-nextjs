@@ -3,7 +3,7 @@
 	height: 100%;
 }
 
-body, html ,body > div, body > div > div {
+body, html {
 	@include full-content()
 }
 
