@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { initStore } from '../src/index'
 import withRedux from 'next-redux-wrapper'
-import FormLayout from '../src/components/Form/FormLayout'
+import AccountForm from '../src/components/Form/AccountForm'
 import * as AccountActions from '../src/actions/account'
 
 const mapStateToProps = state => ({
@@ -11,4 +11,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ( bindActionCreators(AccountActions, dispatch) )
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(FormLayout)
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(AccountForm)
