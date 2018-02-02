@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import headerStyles from './header.scss'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 
 class ItemMenu extends Component {
+  static propTypes = {
+    route: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  }
+
   render() {
     const { route, name } = this.props;
     return (

@@ -1,0 +1,28 @@
+@import 'styles/colors.scss';
+
+.containerApp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.boxForm {
+  background: #fff;
+  display: flex;
+  flex-flow: column;
+  width: 500px;
+  align-items: center;
+
+  h3 {
+    color: $titleColor;
+  }
+
+  h4 {
+    margin: 10px 0 50px 0;
+  }
+
+  form {
+    width: 350px;
+  }
+}

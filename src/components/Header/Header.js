@@ -9,6 +9,7 @@ export default class Header extends Component {
     items: [
       { id: 1, route: '/', name: 'Home' },
       { id: 2, route: '/counter', name: 'Counter' },
+      { id: 3, route: 'create-account', name: 'Criar Conta' }
     ]
   }
 

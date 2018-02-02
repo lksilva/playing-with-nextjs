@@ -1,0 +1,78 @@
+@import 'styles/colors.scss';
+
+.boxInput {
+  margin-bottom: 20px;
+  font-weight: 450;
+  color: #696e8b;
+  input {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    margin-top: 4px;
+    border: 1px solid #b6b9cf;
+    box-shadow: inset 0 5px 6px -6px #b6b9cf;
+  }
+}
+
+.containerSteps {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin: 8px 0;
+  div {
+    height: 8px;
+    background: $default;
+    width: 32%;
+    border-radius: 10px;
+  }
+}
+
+.containerRules {
+  list-style: none;
+
+  li {
+     span {
+        margin-left: 5px;
+     }
+  }
+
+  li::before {
+    content: "•";
+    color: $default;
+    font-size: 27px;
+    line-height: 35px;
+    vertical-align: middle;
+  }
+}
+
+.valid::before {
+  color: $validColor !important;
+}
+
+.invalid::before {
+  color: $invalidColor !important;
+}
+
+.oneStep {
+  div:first-child {
+    background: $invalidColor !important;
+  }
+}
+
+.twoStep {
+  div:nth-child(-n + 2) {
+    background: $partialColor !important;
+  }
+}
+
+.threeStep {
+  div {
+    background: $validColor !important;
+  }
+}
+
+.defaultStep {
+  div {
+    background: $default !important;
+  }
+}
