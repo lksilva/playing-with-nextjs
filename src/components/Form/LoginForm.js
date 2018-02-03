@@ -15,7 +15,7 @@ export default class LoginForm extends Component {
 
   state = {
     email: '',
-    password: ''
+    password: '',
   }
 
   handleInputsChange = (event) => {
@@ -25,8 +25,12 @@ export default class LoginForm extends Component {
     });
   }
 
+  sendLogin = () => {
+    this.props.authenticate(this.state);
+  }
+
   render() {
-    const { user, isLoading, authenticate } = this.props;
+    const { user, isLoading } = this.props;
 
     return (
       <MainLayout removeHeader>
@@ -39,10 +43,10 @@ export default class LoginForm extends Component {
           {isLoading ?
             <h4>Validando...</h4> :
             <div className="boxHandle width350">
-            <Link href="create-account">
+            <Link href="/create-account">
               <a className="menuLink">Nova Conta</a>
             </Link>
-              <Button click={authenticate} label="Login" />
+              <Button click={this.sendLogin} label="Login" />
             </div>
           }
         </FormLayout>

@@ -5,11 +5,11 @@ import Input from '../Input/Input'
 import InputPassword from '../Input/InputPassword'
 import FormLayout from './FormLayout'
 import MainLayout from '../MainLayout'
+import { AllPropertiesFilled } from '../../utils/helpers'
 
 export default class AccountForm extends Component {
   static propTypes = {
-    createAccount: PropTypes.func.isRequired,
-    userValid: PropTypes.bool.isRequired
+    createAccount: PropTypes.func.isRequired
   }
 
   state = {
@@ -25,9 +25,25 @@ export default class AccountForm extends Component {
     });
   }
 
+  validLogin = async () => {
+    return AllPropertiesFilled(this.state);
+  }
+
+  createAccount = async () => {
+    const isValid = await this.validLogin();
+    if (isValid) {
+      this.props.sendContact({
+        email: this.state.email,
+        password: this.state.password
+      });
+    } else {
+      window.alert('É necessário preencher todos os campos');
+    }
+  }
+
   render() {
-    const { userValid, isLoading, sendContact } = this.props;
-    console.log(this.state);
+    const { userValid, isLoading } = this.props;
+
     return (
       <MainLayout removeHeader>
         <FormLayout>
@@ -39,7 +55,7 @@ export default class AccountForm extends Component {
           </form>
           {isLoading ?
             <h4>Enviando...</h4> :
-            <Button click={sendContact} label="Criar Conta" />
+            <Button click={this.createAccount} label="Criar Conta" />
           }
         </FormLayout>
       </MainLayout>

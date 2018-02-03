@@ -1,18 +1,22 @@
+import { ArrayPush } from '../utils/helpers'
 import { CREATE_ACCOUNT, IS_LOADING } from '../constants/Types'
 
-const initialState = { userValid: false, isLoading: false }
+const initialState = {
+  isLoading: false,
+  users: [{ email: 'admin', password: 'admin' }]
+}
 
 export default function account(state = initialState, action) {
   switch (action.type) {
     case CREATE_ACCOUNT:
       return Object.assign({}, state, {
-        userValid: !state.userValid
+        users: ArrayPush(state.users, action.user)
       });
 
     case IS_LOADING:
-    return Object.assign({}, state, {
-      isLoading: action.loading
-    })
+      return Object.assign({}, state, {
+        isLoading: action.loading
+      })
 
     default:
       return state

@@ -4,10 +4,6 @@ import PropTypes from 'prop-types'
 import globalStyle from '../../styles/style.scss'
 
 export default class MainLayout extends Component {
-  static propTypes = {
-    removeHeader: PropTypes.bool.isRequired
-  }
-
   render() {
     return (
       <div>
