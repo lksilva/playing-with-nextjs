@@ -65,7 +65,7 @@ export const requestLogout = () => {
   }
 }
 
-export const  receiveLogout = () => {
+export const receiveLogout = () => {
   return {
     type: LOGOUT_SUCCESS,
     isFetching: false,

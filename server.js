@@ -1,6 +1,7 @@
 const express = require('express')
 const next = require('next')
 const routes = require('./routes')
+const cookieParser = require('cookie-parser')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -9,7 +10,7 @@ const handler = routes.getRequestHandler(app)
 app.prepare()
   .then(() => {
     const server = express()
-
+    server.use(cookieParser())
     server.get('/p/:id', (req, res) => {
       const actualPage = '/post'
       const queryParams = { id: req.params.id }
