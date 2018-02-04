@@ -13,7 +13,6 @@ class App extends Component {
     const { store, isServer, query, req, res } = context;
     if (isServer) {
       if(!!req.cookies[KEY_STORE_TOKEN]) {
-        console.info('Usuário está logado, token:', req.cookies[KEY_STORE_TOKEN]);
         res.redirect('/dashboard');
       } else {
         console.log('Usuário não está logado');
