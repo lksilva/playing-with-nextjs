@@ -7,10 +7,9 @@ export default class Header extends Component {
 
   state = {
     items: [
-      { id: 1, route: '/', name: 'Home' },
+      { id: 1, route: '/dashboard', name: 'Dashboard' },
       { id: 2, route: '/counter', name: 'Counter' },
-      { id: 3, route: 'create-account', name: 'Criar Conta' },
-      { id: 4, route: 'login', name: 'Login' },
+      { id: 3, route: '/create-account', name: 'Criar Conta' },
     ]
   }
 

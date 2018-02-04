@@ -1,6 +1,7 @@
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS, LOGOUT_REQUEST, KEY_STORE_TOKEN } from '../constants/Types'
 import { ObjectIsIdentic, GenerateToken } from '../utils/helpers'
 import { Router } from '../../routes'
+import Cookies from 'js-cookie';
 
 export const authenticate = (fields) => {
   return async (dispacth, getState) => {
@@ -10,7 +11,7 @@ export const authenticate = (fields) => {
     if (isValidUser) {
       setTimeout(() => {
         const token = GenerateToken(20);
-        localStorage.setItem(KEY_STORE_TOKEN, token);
+        Cookies(KEY_STORE_TOKEN, token, { expires: 7 });
         dispacth(receiveLogin());
         Router.pushRoute('dashboard');
       }, 3000);
@@ -25,7 +26,7 @@ export const authenticate = (fields) => {
 export const logoutUser = () => {
   return dispatch => {
     dispatch(requestLogout())
-    localStorage.removeItem(KEY_STORE_TOKEN)
+    Cookies.remove(KEY_STORE_TOKEN)
     dispatch(receiveLogout())
   }
 }
@@ -73,6 +74,6 @@ export const  receiveLogout = () => {
 }
 
 export const getToken = () => {
-  return localStorage.getItem(KEY_STORE_TOKEN);
+  return Cookies.get(KEY_STORE_TOKEN);
 }
 
