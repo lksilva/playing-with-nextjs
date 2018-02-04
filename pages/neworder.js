@@ -28,7 +28,7 @@ class NewOrder extends Component {
   render() {
     return (
       <MainLayout logoutUser={this.props.logoutUser}>
-        <NewOrderForm saveOrder={this.props.saveOrder} isFetching={this.props.isFetching} errorMessage={this.props.errorMessage} />
+        <NewOrderForm saveOrder={this.props.saveOrder} companies={this.props.companies} isFetching={this.props.isFetching} errorMessage={this.props.errorMessage} />
       </MainLayout>
     )
   }
@@ -37,7 +37,8 @@ class NewOrder extends Component {
 const mapStateToProps = state => ({
   isFetching: state.neworder.isFetching,
   errorMessage: state.neworder.message,
-  orders: state.neworder.companies
+  orders: state.neworder.companies,
+  companies: state.company.companies
 })
 
 const mapDispatchToProps = dispatch => (bindActionCreators(Object.assign({}, NeworderActions, LoginActions), dispatch))

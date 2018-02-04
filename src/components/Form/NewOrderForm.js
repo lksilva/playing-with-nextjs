@@ -24,6 +24,7 @@ export default class NewOrderForm extends Component {
   //   }]
   state = {
     amount: '',
+    currentCompany: '',
     product_list: []
   }
 
@@ -34,12 +35,27 @@ export default class NewOrderForm extends Component {
     });
   }
 
+  handleSelectChange = (event) => {
+    this.setState({currentCompany: event.target.value});
+  }
+
   sendOrder = () => {
     this.props.saveOrder(this.state);
   }
 
+  createSelecCompany = (company, index) => <option key={index} value={company.fantasy_name}>{company.fantasy_name}</option>
+
+  createCompanies = (companies) => {
+    return (
+      <select onChange={this.handleSelectChange}>
+        <option value="" selected disabled hidden>Escolha uma empresa</option>
+        {companies.map(this.createSelecCompany)}
+      </select>
+    )
+  }
+
   render() {
-    const { errorMessage, isFetching } = this.props;
+    const { errorMessage, isFetching, companies } = this.props;
 
     return (
       <MainLayout removeHeader>
@@ -47,8 +63,9 @@ export default class NewOrderForm extends Component {
           <h3>Novo Pedido</h3>
           <form className="width350">
             <Input name="amount" type="number" label="Quantidade" handleInput={this.handleInputsChange} />
+            {this.createCompanies(companies)}
           </form>
-          { !isFetching &&
+          {!isFetching &&
             <span className="error">{errorMessage}</span>
           }
           {isFetching ?

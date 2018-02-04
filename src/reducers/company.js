@@ -3,7 +3,7 @@ import { COMPANY_REQUEST, COMPANY_SUCCESS, COMPANY_FAILURE } from '../constants/
 
 const initialState = {
   isFetching: false,
-  companies: [{ fantasy_name: "DELVESYS", cnpj: '27.696.334/0001-06' }],
+  companies: [{ fantasy_name: "DELVESYS", cnpj: '27.696.334/0001-06' }, { fantasy_name: "DELVESYS2", cnpj: '27.696.134/0001-06' }],
   message: ''
 }
 
