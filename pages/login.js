@@ -5,8 +5,10 @@ import LoginForm from '../src/components/Form/LoginForm'
 import * as LoginActions from '../src/actions/login'
 
 const mapStateToProps = state => ({
-  user: state.login.user,
-  isLoading: state.login.isLoading
+  isFetching: state.login.isFetching,
+  isAuthenticated: state.login.isAuthenticated,
+  errorMessage: state.login.errorMessage,
+  user: state.login.user
 })
 
 const mapDispatchToProps = dispatch => ( bindActionCreators(LoginActions, dispatch) )

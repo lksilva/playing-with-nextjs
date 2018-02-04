@@ -9,8 +9,9 @@ import styles from './form.scss'
 
 export default class LoginForm extends Component {
   static propTypes = {
-    authenticate: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
+    isAuthenticated: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string.isRequired,
+    isFetching: PropTypes.bool.isRequired
   }
 
   state = {
@@ -30,7 +31,7 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    const { user, isLoading } = this.props;
+    const { isAuthenticated, errorMessage, isFetching } = this.props;
 
     return (
       <MainLayout removeHeader>
@@ -40,7 +41,10 @@ export default class LoginForm extends Component {
             <Input name="email" type="email" label="Email" handleInput={this.handleInputsChange} />
             <Input name="password" type="password" label="Senha" handleInput={this.handleInputsChange} />
           </form>
-          {isLoading ?
+          {!isAuthenticated && !isFetching &&
+            <span className="error">{errorMessage}</span>
+          }
+          {isFetching ?
             <h4>Validando...</h4> :
             <div className="boxHandle width350">
             <Link href="/create-account">

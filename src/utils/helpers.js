@@ -19,3 +19,13 @@ export function AllPropertiesFilled(object) {
 export function ObjectIsIdentic(object1, object2) {
   return JSON.stringify(object1)===JSON.stringify(object2)
 }
+
+export function GenerateToken(lenght) {
+  const possibilits = 'ABCDEFGHIJKLMNOPQRSTUsVWXYZabcdefghijklmnopqrstuvwxyz0123456789$#@!';
+  let token = '';
+  for (let i = 0; i < lenght; i++) {
+    token += possibilits.charAt(Math.floor(Math.random() * possibilits.length))
+  }
+  console.log('token', token);
+  return token;
+}
