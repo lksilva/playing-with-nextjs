@@ -7,7 +7,7 @@ export default class MainLayout extends Component {
   render() {
     return (
       <div>
-        {!this.props.removeHeader && <Header />}
+        {!this.props.removeHeader && <Header logoutUser={this.props.logoutUser} />}
         {this.props.children}
         <style jsx global>
           {globalStyle}

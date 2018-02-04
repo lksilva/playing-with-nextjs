@@ -8,4 +8,8 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 
+export const COMPANY_REQUEST = 'COMPANY_REQUEST';
+export const COMPANY_SUCCESS = 'COMPANY_SUCCESS';
+export const COMPANY_FAILURE = 'COMPANY_FAILURE';
+
 export const KEY_STORE_TOKEN = 'id_token';

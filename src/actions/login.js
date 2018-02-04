@@ -28,6 +28,7 @@ export const logoutUser = () => {
     dispatch(requestLogout())
     Cookies.remove(KEY_STORE_TOKEN)
     dispatch(receiveLogout())
+    Router.pushRoute('/');
   }
 }
 

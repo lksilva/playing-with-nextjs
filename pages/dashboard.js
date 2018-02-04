@@ -1,32 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import MainLayout from '../src/components/MainLayout'
-import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
+import { bindActionCreators } from 'redux'
+import { initStore } from '../src/index'
+import withRedux from 'next-redux-wrapper'
+import * as DashboardActions from '../src/actions/dashboard'
+import * as LoginActions from '../src/actions/login'
+import PropTypes from 'prop-types'
 
-const Index = (props) => (
-  <MainLayout>
-    <h1>Batman TV Shows</h1>
-    <ul>
-      {props.shows.map(({show}) => (
-        <li key={show.id}>
-          <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </MainLayout>
-)
+class Dashboard extends Component {
 
-Index.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  const data = await res.json()
+  static propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+  }
 
-  console.log(`Show data fetched. Count: ${data.length}`)
-
-  return {
-    shows: data
+  render() {
+    return (
+      <MainLayout logoutUser={this.props.logoutUser}>
+        <div>Eu sou o DashBoard</div>
+      </MainLayout>
+    )
   }
 }
 
-export default Index
+const mapStateToProps = state => ({
+  isFetching: state.dashboard.isFetching,
+})
+
+const mapDispatchToProps = dispatch => (bindActionCreators(Object.assign({}, DashboardActions, LoginActions), dispatch))
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Dashboard)
