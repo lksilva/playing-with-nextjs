@@ -1,32 +1,16 @@
-import React from 'react'
-import MainLayout from '../src/components/MainLayout'
-import Link from 'next/link'
-import fetch from 'isomorphic-unfetch'
+import { bindActionCreators } from 'redux'
+import { initStore } from '../src/index'
+import withRedux from 'next-redux-wrapper'
+import LoginForm from '../src/components/Form/LoginForm'
+import * as LoginActions from '../src/actions/login'
 
-const Index = (props) => (
-  <MainLayout>
-    <h1>Batman TV Shows</h1>
-    <ul>
-      {props.shows.map(({show}) => (
-        <li key={show.id}>
-          <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  </MainLayout>
-)
+const mapStateToProps = state => ({
+  isFetching: state.login.isFetching,
+  isAuthenticated: state.login.isAuthenticated,
+  errorMessage: state.login.errorMessage,
+  user: state.login.user
+})
 
-Index.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  const data = await res.json()
+const mapDispatchToProps = dispatch => ( bindActionCreators(LoginActions, dispatch) )
 
-  console.log(`Show data fetched. Count: ${data.length}`)
-
-  return {
-    shows: data
-  }
-}
-
-export default Index
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(LoginForm)

@@ -1,6 +1,6 @@
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS, LOGOUT_REQUEST, KEY_STORE_TOKEN } from '../constants/Types'
 import { ObjectIsIdentic, GenerateToken } from '../utils/helpers'
-
+import { Router } from '../../routes'
 
 export const authenticate = (fields) => {
   return async (dispacth, getState) => {
@@ -12,6 +12,7 @@ export const authenticate = (fields) => {
         const token = GenerateToken(20);
         localStorage.setItem(KEY_STORE_TOKEN, token);
         dispacth(receiveLogin());
+        Router.pushRoute('dashboard');
       }, 3000);
     } else {
       setTimeout(() => {
