@@ -65,10 +65,10 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
+    "build": "next build",
     "dev": "node server.js",
-    "start": "next start -p 8000",
-    "heroku-postbuild": "next build",
-    "build": "next build"
+    "postinstall": "npm run build",
+    "start": "NODE_ENV=production node server.js"
   },
   "jest": {
     "collectCoverageFrom": [
