@@ -1,21 +1,33 @@
 import { ArrayPush } from '../utils/helpers'
-import { CREATE_ACCOUNT, IS_LOADING } from '../constants/Types'
+import { NEW_ACCOUNT_SUCCESS, NEW_ACCOUNT_REQUEST, NEW_ACCOUNT_FAILURE } from '../constants/Types'
 
 const initialState = {
-  isLoading: false,
-  users: [{ email: 'admin', password: 'admin' }]
+  isFetching: false,
+  users: [{ email: 'admin', password: 'admin' }],
+  message: '',
+  inserted: false
+  
 }
 
 export default function account(state = initialState, action) {
   switch (action.type) {
-    case CREATE_ACCOUNT:
+    case NEW_ACCOUNT_REQUEST:
       return Object.assign({}, state, {
-        users: ArrayPush(state.users, action.user)
+        isFetching: action.isFetching,
+      });
+    
+    case NEW_ACCOUNT_SUCCESS:
+      return Object.assign({}, state, {
+        users: ArrayPush(state.users, action.user),
+        isFetching: action.isFetching,
+        message: action.message,
+        inserted: action.inserted
       });
 
-    case IS_LOADING:
+      case NEW_ACCOUNT_FAILURE:
       return Object.assign({}, state, {
-        isLoading: action.loading
+        isFetching: action.isFetching,
+        message: action.message
       })
 
     default:

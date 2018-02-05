@@ -6,8 +6,9 @@ import * as AccountActions from '../src/actions/account'
 import { logoutUser } from '../src/actions/login' 
 
 const mapStateToProps = state => ({
-  userValid: state.account.userValid,
-  isLoading: state.account.isLoading
+  isFetching: state.account.isFetching,
+  errorMessage: state.account.message,
+  inserted: state.account.inserted,
 })
 
 const mapDispatchToProps = dispatch => ( bindActionCreators(Object.assign({}, AccountActions, logoutUser), dispatch) )

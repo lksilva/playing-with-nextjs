@@ -28,6 +28,7 @@ export const requestOrder = () => {
   return {
     type: NEW_ORDER_REQUEST,
     isFetching: true,
+    inserted: false,
   }
 }
 
