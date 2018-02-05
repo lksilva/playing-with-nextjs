@@ -23,12 +23,12 @@ export default function neworder(state = initialState, action) {
   switch (action.type) {
     case NEW_ORDER_REQUEST:
       return Object.assign({}, state, {
-        orders: ArrayPush(state.orders, action.order),
         isFetching: action.isFetching,
       });
 
     case NEW_ORDER_SUCCESS:
       return Object.assign({}, state, {
+        orders: ArrayPush(state.orders, action.order),
         isFetching: action.isFetching,
       })
 

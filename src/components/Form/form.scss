@@ -25,6 +25,12 @@
   form {
     width: 350px;
   }
+
+  select {
+    height: 39px;
+    border: 1px solid #b6b9cf;
+    box-shadow: inset 0 5px 6px -6px #b6b9cf;
+  }
 }
 
 .width350 {
@@ -40,4 +46,39 @@
   color: $invalidColor;
   font-weight: 400;
   margin-bottom: 20px;
+}
+
+.productBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 35px 0;
+
+  input {
+    padding: 12px 0;
+    border: 1px solid #b6b9cf;
+    box-shadow: inset 0 5px 6px -6px #b6b9cf;
+  }
+}
+
+.shoppingList {
+  width: 100%;
+  padding: 15px;
+  color: $titleColor;
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+      border: 1px solid #b6b9cf;
+      text-align: left;
+      padding: 8px;
+      font-weight: 300;
+  }
+
+  tr:nth-child(even) {
+      background-color: $default;
+  }
 }

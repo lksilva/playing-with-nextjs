@@ -29,3 +29,7 @@ export function GenerateToken(lenght) {
   console.log('token', token);
   return token;
 }
+
+export const productsName = [
+  'Cerveja', 'Carvão', 'Refrigerante', 'Carne', 'Guardanapo'
+]

@@ -1,30 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button/Button'
-import Input from '../Input/Input'
 import FormLayout from './FormLayout'
 import MainLayout from '../MainLayout'
 import styles from './form.scss'
+import { productsName, ArrayPush } from '../../utils/helpers'
 
 export default class NewOrderForm extends Component {
   static propTypes = {
     errorMessage: PropTypes.string.isRequired,
     isFetching: PropTypes.bool.isRequired
   }
-  // company_name: 'DELVESYS',
-  //   product_list: [{
-  //     name: 'cerveja',
-  //     amount: 15
-  //   },{
-  //     name: 'carvão',
-  //     amount: 2
-  //   },{
-  //     name: 'carne',
-  //     amount: 10
-  //   }]
+
   state = {
     amount: '',
     currentCompany: '',
+    currentProduct: '',
     product_list: []
   }
 
@@ -36,11 +27,25 @@ export default class NewOrderForm extends Component {
   }
 
   handleSelectChange = (event) => {
-    this.setState({currentCompany: event.target.value});
+    this.setState({ currentCompany: event.target.value });
+  }
+
+  handleSelectProductChange = (event) => {
+    this.setState({ currentProduct: event.target.value })
   }
 
   sendOrder = () => {
-    this.props.saveOrder(this.state);
+    const payload = Object.assign({}, {
+      company_name: this.state.currentCompany,
+      product_list: this.state.product_list
+    })
+    this.props.saveOrder(payload);
+  }
+
+  addProductOrder = (e) => {
+    e.preventDefault();
+    const product = Object.assign({}, { name: this.state.currentProduct, amount: this.state.amount });
+    this.setState({ product_list: ArrayPush(this.state.product_list, product) })
   }
 
   createSelecCompany = (company, index) => <option key={index} value={company.fantasy_name}>{company.fantasy_name}</option>
@@ -50,8 +55,49 @@ export default class NewOrderForm extends Component {
       <select onChange={this.handleSelectChange}>
         <option value="" selected disabled hidden>Escolha uma empresa</option>
         {companies.map(this.createSelecCompany)}
+        <style jsx>{styles}</style>
       </select>
     )
+  }
+
+  createSelectProduct = (product, index) => <option key={index} value={product}>{product}</option>
+
+  createProducts = (products) => {
+    return (
+      <select onChange={this.handleSelectProductChange}>
+        <option value="" selected disabled hidden>Selecione um produto</option>
+        {products.map(this.createSelectProduct)}
+        <style jsx>{styles}</style>
+      </select>
+    )
+  }
+
+  createItemShopp = (item, index) => {
+    return (
+      <tr key={index}>
+        <th>{item.name}</th>
+        <th>{item.amount}</th>
+        <style jsx>{styles}</style>
+      </tr>
+    )
+  }
+
+  createShopping = (productList) => {
+
+    if (!!productList.length) {
+      return (
+        <table>
+          <tbody>
+            <tr>
+              <th>Produto</th>
+              <th>Quantidade</th>
+            </tr>
+            {productList.map(this.createItemShopp)}
+          </tbody>
+          <style jsx>{styles}</style>
+        </table>
+      )
+    }
   }
 
   render() {
@@ -62,12 +108,20 @@ export default class NewOrderForm extends Component {
         <FormLayout>
           <h3>Novo Pedido</h3>
           <form className="width350">
-            <Input name="amount" type="number" label="Quantidade" handleInput={this.handleInputsChange} />
+            <div className="productBox">
+              {this.createProducts(productsName)}
+              <b>Qtd</b>
+              <input name="amount" type="number" onChange={this.handleInputsChange} />
+              <button onClick={this.addProductOrder}>Add</button>
+            </div>
             {this.createCompanies(companies)}
           </form>
           {!isFetching &&
             <span className="error">{errorMessage}</span>
           }
+          <div className="shoppingList">
+            {this.createShopping(this.state.product_list)}
+          </div>
           {isFetching ?
             <h4>Validando...</h4> :
             <div>
