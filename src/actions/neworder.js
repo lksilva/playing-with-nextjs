@@ -28,6 +28,7 @@ export const receiveOrder = (order) => {
     type: NEW_ORDER_SUCCESS,
     isFetching: false,
     message: '',
+    inserted: true,
     order
   }
 }

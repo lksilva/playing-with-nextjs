@@ -16,7 +16,8 @@ const initialState = {
       amount: 10
     }]
   }],
-  message: ''
+  message: '',
+  inserted: false
 }
 
 export default function neworder(state = initialState, action) {
@@ -30,6 +31,8 @@ export default function neworder(state = initialState, action) {
       return Object.assign({}, state, {
         orders: ArrayPush(state.orders, action.order),
         isFetching: action.isFetching,
+        message: action.message,
+        inserted: action.inserted
       })
 
     case NEW_ORDER_FAILURE:

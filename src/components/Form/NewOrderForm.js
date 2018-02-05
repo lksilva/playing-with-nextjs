@@ -9,6 +9,7 @@ import { productsName, ArrayPush } from '../../utils/helpers'
 export default class NewOrderForm extends Component {
   static propTypes = {
     errorMessage: PropTypes.string.isRequired,
+    inserted: PropTypes.bool.isRequired,
     isFetching: PropTypes.bool.isRequired
   }
 
@@ -17,6 +18,16 @@ export default class NewOrderForm extends Component {
     currentCompany: '',
     currentProduct: '',
     product_list: []
+  }
+
+  resetProductList = () => {
+    this.setState({ product_list: [] })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.inserted) {
+      this.resetProductList();
+    }
   }
 
   handleInputsChange = (event) => {
@@ -83,7 +94,6 @@ export default class NewOrderForm extends Component {
   }
 
   createShopping = (productList) => {
-
     if (!!productList.length) {
       return (
         <table>
@@ -101,7 +111,7 @@ export default class NewOrderForm extends Component {
   }
 
   render() {
-    const { errorMessage, isFetching, companies } = this.props;
+    const { errorMessage, isFetching, companies, inserted } = this.props;
 
     return (
       <MainLayout removeHeader>
@@ -118,6 +128,9 @@ export default class NewOrderForm extends Component {
           </form>
           {!isFetching &&
             <span className="error">{errorMessage}</span>
+          }
+          {!isFetching && inserted &&
+            <span className="sucess">Pedido salvo com sucesso</span>
           }
           <div className="shoppingList">
             {this.createShopping(this.state.product_list)}
