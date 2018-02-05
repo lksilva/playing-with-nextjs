@@ -65,7 +65,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start -p $PORT",
     "heroku-postbuild": "npm run build",
