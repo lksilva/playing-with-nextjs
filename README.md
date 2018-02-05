@@ -1,3 +1,7 @@
+# Aplicação Server-Side, Redux, React, Next.js
+**Note: Essa aplicação salva os dados apenas na store do redux !**
+Credenciais de acesso: `login: admin` `senha: admin`
+
 # Readux Template
 This project template was built with [Create React App](https://github.com/facebookincubator/create-react-app), which provides a simple way to start React projects with no build configuration needed.
 
