@@ -10,17 +10,21 @@ export default class Dashboard extends Component {
     orders: PropTypes.array.isRequired
   }
 
-  createItem = (item) => {
+  createItem = (item, orders) => {
+    console.log(JSON.stringify(item));
+    console.log(JSON.stringify(orders));
+    const order = orders.filter(o => o.company_name === item.fantasy_name);
     return (
       <tr key={item.cnpj}>
         <th>{item.fantasy_name}</th>
         <th>{item.cnpj}</th>
+        <th>{order.length ? order.length : 'Nenhum'}</th>
         <style jsx>{dashboardStyles}</style>
       </tr>
     )
   }
 
-  createCompanies = (companies) => {
+  createCompanies = (companies, orders) => {
     if (!!companies.length) {
       return (
         <table>
@@ -30,7 +34,7 @@ export default class Dashboard extends Component {
               <th>CNPJ</th>
               <th>Quantidade de pedidos</th>
             </tr>
-            {companies.map(this.createItem)}
+            {companies.map(item => this.createItem(item, orders))}
           </tbody>
           <style jsx>{dashboardStyles}</style>
         </table>
@@ -40,9 +44,10 @@ export default class Dashboard extends Component {
 
   render() {
     const { companies, orders } = this.props;
+
     return (
       <div className="container">
-        {this.createCompanies(companies)}
+        {this.createCompanies(companies, orders)}
         <style jsx>{dashboardStyles}</style>
       </div>
     )
