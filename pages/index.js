@@ -12,8 +12,10 @@ class App extends Component {
   static getInitialProps = (context) => {
     const { store, isServer, query, req, res } = context;
     if (isServer) {
-      if(!!req.cookies[KEY_STORE_TOKEN]) {
-        res.redirect('/dashboard');
+      if(!!req.cookies) {
+        if(!!req.cookies[KEY_STORE_TOKEN]){
+          res.redirect('/dashboard');
+        }
       } else {
         console.log('Usuário não está logado');
       }
