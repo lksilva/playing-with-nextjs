@@ -1,4 +1,4 @@
-import { NEW_ORDER_REQUEST, NEW_ORDER_SUCCESS, NEW_ORDER_FAILURE } from '../constants/Types';
+import { NEW_ORDER_REQUEST, NEW_ORDER_SUCCESS, NEW_ORDER_FAILURE, REMOVE_ORDER } from '../constants/Types';
 
 export const saveOrder = (order) => {
   return async (dispacth) => {
@@ -13,6 +13,14 @@ export const saveOrder = (order) => {
         dispacth(orderError('Preencha lista de compras e o nome da empresa'))
       }, 3000);
     }
+  }
+}
+
+export const removeOrder = (id) => {
+  console.log('Remover pedido', id);
+  return {
+    type: REMOVE_ORDER,
+    id
   }
 }
 

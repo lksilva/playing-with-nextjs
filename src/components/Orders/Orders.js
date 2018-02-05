@@ -10,6 +10,7 @@ export default class Orders extends Component {
   }
 
   createItem = (item) => {
+    console.log(this.props);
     return (
       <tr key={item.id}>
         <th>{item.id}</th>
@@ -21,7 +22,7 @@ export default class Orders extends Component {
             </div>
           )
         })}</th>
-        <th>Cancelar</th>
+        <th className="pointer" onClick={() => this.props.removeOrder(item.id)}>Cancelar</th>
         <style jsx>{ordersStyles}</style>
       </tr>
     )

@@ -29,7 +29,7 @@ class OrdersList extends Component {
   render() {
     return (
       <MainLayout logoutUser={this.props.logoutUser}>
-        <Orders orders={this.props.orders} company={this.props.company} />
+        <Orders removeOrder={this.props.removeOrder} orders={this.props.orders} company={this.props.company} />
       </MainLayout>
     )
   }

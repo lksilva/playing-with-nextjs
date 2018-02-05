@@ -1,5 +1,5 @@
 import { ArrayPush } from '../utils/helpers'
-import { NEW_ORDER_REQUEST, NEW_ORDER_SUCCESS, NEW_ORDER_FAILURE } from '../constants/Types'
+import { NEW_ORDER_REQUEST, NEW_ORDER_SUCCESS, NEW_ORDER_FAILURE, REMOVE_ORDER } from '../constants/Types'
 
 const initialState = {
   isFetching: false,
@@ -41,7 +41,10 @@ export default function neworder(state = initialState, action) {
         isFetching: action.isFetching,
         message: action.message
       })
-
+    case REMOVE_ORDER: 
+      return Object.assign({}, state, {
+        orders: state.orders.filter( item => item.id !== action.id)
+      })
     default:
       return state
   }

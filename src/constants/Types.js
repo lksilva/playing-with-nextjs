@@ -15,5 +15,6 @@ export const COMPANY_FAILURE = 'COMPANY_FAILURE';
 export const NEW_ORDER_REQUEST = 'NEW_ORDER_REQUEST';
 export const NEW_ORDER_SUCCESS = 'NEW_ORDER_SUCCESS';
 export const NEW_ORDER_FAILURE = 'NEW_ORDER_FAILURE';
+export const REMOVE_ORDER = 'REMOVE_ORDER';
 
 export const KEY_STORE_TOKEN = 'id_token';
