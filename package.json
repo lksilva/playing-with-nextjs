@@ -66,7 +66,7 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "heroku-postbuild": "next build",
     "build": "next build"
   },
