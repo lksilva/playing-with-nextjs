@@ -66,9 +66,9 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "start": "NODE_ENV=production next start -p ${PORT:-8080}",
-    "build": "NODE_ENV=production next build",
-    "test": "node scripts/test.js --env=jsdom"
+    "start": "next start",
+    "heroku-postbuild": "next build",
+    "build": "next build"
   },
   "jest": {
     "collectCoverageFrom": [
