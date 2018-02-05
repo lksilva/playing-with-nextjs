@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import FormLayout from './FormLayout'
 import MainLayout from '../MainLayout'
 import styles from './form.scss'
-import { productsName, ArrayPush } from '../../utils/helpers'
+import { productsName, ArrayPush, GenerateToken } from '../../utils/helpers'
 
 export default class NewOrderForm extends Component {
   static propTypes = {
@@ -47,6 +47,7 @@ export default class NewOrderForm extends Component {
 
   sendOrder = () => {
     const payload = Object.assign({}, {
+      id: GenerateToken(10),
       company_name: this.state.currentCompany,
       product_list: this.state.product_list
     })

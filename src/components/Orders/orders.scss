@@ -1,0 +1,23 @@
+@import 'styles/colors.scss';
+
+.container {
+  width: 100%;
+  padding: 15px;
+  color: $titleColor;
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+      border: 1px solid #b6b9cf;
+      text-align: left;
+      padding: 8px;
+      font-weight: 300;
+  }
+
+  tr:nth-child(even) {
+      background-color: $default;
+  }
+}

@@ -26,7 +26,6 @@ export function GenerateToken(lenght) {
   for (let i = 0; i < lenght; i++) {
     token += possibilits.charAt(Math.floor(Math.random() * possibilits.length))
   }
-  console.log('token', token);
   return token;
 }
 

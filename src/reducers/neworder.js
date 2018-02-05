@@ -3,7 +3,8 @@ import { NEW_ORDER_REQUEST, NEW_ORDER_SUCCESS, NEW_ORDER_FAILURE } from '../cons
 
 const initialState = {
   isFetching: false,
-  orders: [{ 
+  orders: [{
+    id: 'VDPCg5WGfJ',
     company_name: 'DELVESYS',
     product_list: [{
       name: 'cerveja',

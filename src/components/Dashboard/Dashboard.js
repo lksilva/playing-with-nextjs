@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import dashboardStyles from './dashboard.scss'
 import PropTypes from 'prop-types'
+import Link from 'next/link'
 
 export default class Dashboard extends Component {
 
@@ -11,14 +12,21 @@ export default class Dashboard extends Component {
   }
 
   createItem = (item, orders) => {
-    console.log(JSON.stringify(item));
-    console.log(JSON.stringify(orders));
     const order = orders.filter(o => o.company_name === item.fantasy_name);
+
     return (
       <tr key={item.cnpj}>
         <th>{item.fantasy_name}</th>
         <th>{item.cnpj}</th>
-        <th>{order.length ? order.length : 'Nenhum'}</th>
+        {order.length ?
+          <th>
+            <Link href={{ pathname: '/orders-list', query: { company: item.fantasy_name } }}>
+              <a className="menuLink">{order.length}</a>
+            </Link>
+          </th>
+          :
+          <th>Nenhum</th>
+        }
         <style jsx>{dashboardStyles}</style>
       </tr>
     )
