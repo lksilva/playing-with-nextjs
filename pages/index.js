@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
   isFetching: state.login.isFetching,
   isAuthenticated: state.login.isAuthenticated,
   errorMessage: state.login.errorMessage,
-  user: state.login.user
+  user: state.login.user,
 })
 
 const mapDispatchToProps = dispatch => (bindActionCreators(LoginActions, dispatch))

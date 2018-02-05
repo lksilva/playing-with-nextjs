@@ -7,8 +7,9 @@ import * as DashboardActions from '../src/actions/dashboard'
 import * as LoginActions from '../src/actions/login'
 import PropTypes from 'prop-types'
 import { KEY_STORE_TOKEN } from '../src/constants/Types' 
+import Dashboard from '../src/components/Dashboard/Dashboard'
 
-class Dashboard extends Component {
+class DashboardContainer extends Component {
 
   static getInitialProps = (context) => {
     const { store, isServer, query, req, res } = context;
@@ -27,7 +28,7 @@ class Dashboard extends Component {
   render() {
     return (
       <MainLayout logoutUser={this.props.logoutUser}>
-        <div>Eu sou o DashBoard</div>
+        <Dashboard companies={this.props.companies} orders={this.props.orders} isFetching={this.props.isFetching}/>
       </MainLayout>
     )
   }
@@ -35,8 +36,10 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   isFetching: state.dashboard.isFetching,
+  companies: state.company.companies,
+  orders: state.neworder.orders
 })
 
 const mapDispatchToProps = dispatch => (bindActionCreators(Object.assign({}, DashboardActions, LoginActions), dispatch))
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Dashboard)
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(DashboardContainer)
