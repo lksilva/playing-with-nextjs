@@ -12,6 +12,7 @@ class App extends Component {
   static getInitialProps = (context) => {
     const { store, isServer, query, req, res } = context;
     if (isServer) {
+      console.log('REQ', req)
       if(!!req.cookies) {
         if(!!req.cookies[KEY_STORE_TOKEN]){
           res.redirect('/dashboard');
