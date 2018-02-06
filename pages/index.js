@@ -10,9 +10,10 @@ import { KEY_STORE_TOKEN } from '../src/constants/Types'
 
 class App extends Component {
   static getInitialProps = (context) => {
-    const { store, isServer, query, req, res } = context;
+    const { store, isServer, query, req, res, cookie } = context;
     if (isServer) {
       if(!!req.cookies[KEY_STORE_TOKEN]) {
+        console.log('COOKIE', req.cookies[KEY_STORE_TOKEN]);
         res.redirect('/dashboard');
       } else {
         console.log('Usuário não está logado');
